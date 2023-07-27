@@ -4,7 +4,6 @@ import Logo from "@/components/common/logo";
 import { PasswordInput, TextInput } from "@mantine/core";
 import React from "react";
 import Image from "next/image";
-import Carousel from "@/components/auth/carousel";
 
 export default function Login() {
   return (
@@ -54,8 +53,14 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <div className="w-[40%] md:hidden h-[100vh]">
-          <Carousel />
+        <div className="w-[45%] md:hidden h-[100vh]">
+          <Image
+            src={"/sky.png"}
+            width={1000}
+            height={1000}
+            className="!w-full !h-[100vh]"
+            alt={"weather"}
+          />
         </div>
       </div>
     </main>
