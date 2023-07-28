@@ -23,7 +23,7 @@ export default function Login() {
               &lt; Back to sign in
             </p>
           </Link>
-          <div className="flex flex-col lg:h-[75%] my-auto   w-[100%]  h-[50vh]">
+          <div className="flex flex-col lg:h-[75%] my-auto   w-[100%]  h-[70vh]">
             <div>
               <AuthHeading
                 heading="Forgot Your Password"

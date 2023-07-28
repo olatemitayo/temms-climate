@@ -14,7 +14,7 @@ export default function Login() {
       </div>
       <div className="h-[100vh]   mx-auto flex justify-between">
         <div className="md:w-full w-[50%] flex justify-between h-[100vh] flex-col py-[clamp(0.5rem,3vw,3rem)] px-[clamp(1rem,5vw,5rem)] ">
-          <div className="flex flex-col lg:h-[75%] my-auto   w-[100%]  h-[50vh]">
+          <div className="flex flex-col lg:h-[75%] my-auto   w-[100%]  h-[70vh]">
             <div>
               <AuthHeading
                 heading="Sign In"
@@ -53,11 +53,19 @@ export default function Login() {
                       "focus:border-[#eadfd8] text-[#4e4d4c] !text-[clamp(0.8rem,2vw,1.15rem)]  ",
                   }}
                 />
-                <Link href="/forgot-password" className="text-end">
-                  <p className="text-[#e87d4d] font-[500] text-[12px]">
-                    Forgot password?
-                  </p>
-                </Link>
+                <div className="flex flex-row-reverse justify-between">
+                  <Link href="/signup" className="text-end">
+                    <p className="text-[#e87d4d] font-bold text-[12px]">
+                      Dont have an account?{" "}
+                      <span className="text-[#025162] font-bold">Sign Up</span>
+                    </p>
+                  </Link>
+                  <Link href="/forgot-password" className="text-end">
+                    <p className="text-[#e87d4d] font-bold text-[12px]">
+                      Forgot password?
+                    </p>
+                  </Link>
+                </div>
                 <Button text="Log in" />
               </form>
             </div>

@@ -62,7 +62,12 @@ export default function CreateAccount() {
                       "focus:border-[#eadfd8] text-[#4e4d4c] !text-[clamp(0.8rem,2vw,1.15rem)]  ",
                   }}
                 />
-
+                <Link href="/" className="text-end">
+                  <p className="text-[#e87d4d]  text-[12px]">
+                    Have an account?{" "}
+                    <span className="text-[#025162] font-bold">Sign In</span>
+                  </p>
+                </Link>
                 <Link href="/">
                   <Button text="Create Account" />
                 </Link>
