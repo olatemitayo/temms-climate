@@ -7,13 +7,13 @@ import Image from "next/image";
 
 export default function Login() {
   return (
-    <main className="bg-[#eadfd8] ">
+    <main className="bg-[#eadfd8] relative">
+      <div className="absolute left-[10px] top-[10px]">
+        <Logo />
+      </div>
       <div className="h-[100vh]   mx-auto flex justify-between">
         <div className="md:w-full w-[50%] flex justify-between h-[100vh] flex-col py-[clamp(0.5rem,3vw,3rem)] px-[clamp(1rem,5vw,5rem)] ">
-          <div>
-            <Logo />
-          </div>
-          <div className="flex flex-col  w-[100%]  h-[80vh]">
+          <div className="flex flex-col my-auto  w-[100%]  h-[50vh]">
             <div>
               <AuthHeading
                 heading="Sign In"
@@ -32,10 +32,12 @@ export default function Login() {
                   size="lg"
                   withAsterisk
                   classNames={{
-                    label: "text-[clamp(1rem,2vw,1.5rem)]   text-[#4e4d4c]",
-                    input: "focus:border-[#eadfd8] text-[#4e4d4c]  ",
+                    label: "   text-[#4e4d4c] text-[clamp(0.8rem,2vw,1.15rem)]",
+                    input:
+                      "focus:border-[#eadfd8] text-[#4e4d4c] text-[clamp(0.8rem,2vw,1.15rem)]  ",
                   }}
                 />
+
                 <PasswordInput
                   placeholder="enter your password"
                   label="Password"
@@ -44,10 +46,13 @@ export default function Login() {
                   withAsterisk
                   required
                   classNames={{
-                    label: "text-[clamp(1rem,2vw,1.5rem)]   text-[#4e4d4c]",
-                    input: "focus:border-[#eadfd8]  text-[#4e4d4c]   ",
+                    label: "   text-[#4e4d4c] text-[clamp(0.8rem,2vw,1.15rem)]",
+                    input:
+                      "focus:border-[#eadfd8] text-[#4e4d4c] !text-[clamp(0.8rem,2vw,1.15rem)]  ",
                   }}
+                  className="password"
                 />
+
                 <Button text="Log in" />
               </form>
             </div>

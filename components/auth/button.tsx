@@ -1,18 +1,25 @@
-import React, { Component, ComponentProps } from "react";
+import React, { ComponentProps, Ref } from "react";
+import { Button as MantineButton } from "@mantine/core";
 
 interface ButtonProp extends ComponentProps<"button"> {
-  text: string;
+  text?: string;
 }
-export default function Button(props: ButtonProp) {
+
+export default function CustomButton(props: ButtonProp) {
   const { text, ...rest } = props;
+  const buttonRef: Ref<HTMLButtonElement> = React.createRef();
+
   return (
     <div>
-      <button
-        className="w-full bg-[#025162] rounded-[8px] px-[clamp(1rem,2vw,1.5rem)] py-2 mt-[clamp(0.5rem,2vw,1.5rem)] text-[clamp(1rem,2vw,1.5rem)] text-white"
+      <MantineButton
+        size="lg"
+        radius="md"
         {...rest}
+        ref={buttonRef}
+        className=" w-full bg-[#025162] !font-normal "
       >
         {text}
-      </button>
+      </MantineButton>
     </div>
   );
 }
