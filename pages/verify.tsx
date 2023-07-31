@@ -44,7 +44,6 @@ export default function Verify() {
   };
 
   const handlesubmit = (e: FormEvent) => {
-    e.preventDefault();
     VerifyPin();
   };
   return (
@@ -78,8 +77,6 @@ export default function Verify() {
               >
                 <Group position="center">
                   <PinInput
-                    // onChange={setOtp}
-                    // value={String(otp)}
                     classNames={{
                       input: "w-full h-[clamp(50px,7vw,104px)]",
                     }}

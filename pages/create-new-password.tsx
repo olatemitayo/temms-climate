@@ -1,12 +1,47 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { LoadingOverlay, PasswordInput } from "@mantine/core";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
-import { PasswordInput, TextInput } from "@mantine/core";
-import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { toast } from "react-toastify";
+
+interface CreateNewPasswordProps {
+  new_password: string;
+  confirm_password: string;
+}
 
 export default function CreateNewPassword() {
+  const [visible, setVisible] = useState(false);
+  const router = useRouter();
+  const [password, setPassword] = useState<CreateNewPasswordProps>({
+    new_password: "",
+    confirm_password: "",
+  });
+
+  const newPass = (value: CreateNewPasswordProps) => {
+    axios
+      .post("", {
+        email: router.query.email,
+        new_password: value.new_password,
+        confirm_password: value.confirm_password,
+      })
+      .then(function (res) {
+        if (res.data) {
+          setVisible(true);
+          toast.success("Password reset complete");
+          router.push("/");
+        }
+      })
+      .catch(function (error) {
+        setVisible(false);
+        toast.error(error);
+      });
+  };
+
   return (
     <main className="bg-[#eadfd8] relative">
       <div className="absolute left-[10px] top-[10px]">
@@ -35,6 +70,13 @@ export default function CreateNewPassword() {
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
                 <PasswordInput
+                  value={password.new_password}
+                  onChange={(e) => {
+                    setPassword({
+                      ...password,
+                      new_password: e.target.value,
+                    });
+                  }}
                   placeholder="new password"
                   label="Password"
                   radius="md"
@@ -49,6 +91,13 @@ export default function CreateNewPassword() {
                   }}
                 />
                 <PasswordInput
+                  value={password.confirm_password}
+                  onChange={(e) => {
+                    setPassword({
+                      ...password,
+                      confirm_password: e.target.value,
+                    });
+                  }}
                   placeholder="confirm new password"
                   label="Confirm Password"
                   radius="md"
@@ -63,7 +112,7 @@ export default function CreateNewPassword() {
                   }}
                 />
 
-                <Button text="Create new password" />
+                <Button text="Create new password" onClick={(e) => newPass} />
               </form>
             </div>
           </div>
@@ -78,6 +127,7 @@ export default function CreateNewPassword() {
           />
         </div>
       </div>
+      <LoadingOverlay visible={visible} overlayBlur={2} />
     </main>
   );
 }
