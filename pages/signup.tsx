@@ -80,6 +80,7 @@ export default function CreateAccount() {
                 <TextInput
                   placeholder="enter your email address"
                   label="Email Address"
+                  {...form.getInputProps("email")}
                   radius="md"
                   size="lg"
                   withAsterisk
@@ -92,6 +93,7 @@ export default function CreateAccount() {
                 <TextInput
                   placeholder="enter your username"
                   label="Username"
+                  {...form.getInputProps("username")}
                   radius="md"
                   size="lg"
                   withAsterisk
@@ -105,6 +107,7 @@ export default function CreateAccount() {
                 <PasswordInput
                   placeholder="enter your password"
                   label="Password"
+                  {...form.getInputProps("password")}
                   radius="md"
                   size="lg"
                   withAsterisk
@@ -123,7 +126,7 @@ export default function CreateAccount() {
                   </p>
                 </Link>
                 <Link href="/">
-                  <Button text="Create Account" />
+                  <Button text="Create Account" type="submit" />
                 </Link>
               </form>
             </div>
