@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { isNotEmpty, useForm } from "@mantine/form";
 import { LoadingOverlay, PasswordInput } from "@mantine/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -42,6 +43,15 @@ export default function CreateNewPassword() {
       });
   };
 
+  const form = useForm({
+    initialValues: { new_password: "", confirm_password: "" },
+
+    validate: {
+      new_password: isNotEmpty(),
+      confirm_password: isNotEmpty(),
+    },
+  });
+
   return (
     <main className="bg-[#eadfd8] relative">
       <div className="absolute left-[10px] top-[10px]">
@@ -66,17 +76,14 @@ export default function CreateNewPassword() {
             </div>
             <div>
               <form
+                onSubmit={form.onSubmit((value) => {
+                  newPass(value);
+                })}
                 action=""
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
                 <PasswordInput
-                  value={password.new_password}
-                  onChange={(e) => {
-                    setPassword({
-                      ...password,
-                      new_password: e.target.value,
-                    });
-                  }}
+                  {...form.getInputProps("new_password")}
                   placeholder="new password"
                   label="Password"
                   radius="md"
@@ -91,13 +98,7 @@ export default function CreateNewPassword() {
                   }}
                 />
                 <PasswordInput
-                  value={password.confirm_password}
-                  onChange={(e) => {
-                    setPassword({
-                      ...password,
-                      confirm_password: e.target.value,
-                    });
-                  }}
+                  {...form.getInputProps("confirm_password")}
                   placeholder="confirm new password"
                   label="Confirm Password"
                   radius="md"
@@ -112,7 +113,7 @@ export default function CreateNewPassword() {
                   }}
                 />
 
-                <Button text="Create new password" onClick={(e) => newPass} />
+                <Button text="Create new password" />
               </form>
             </div>
           </div>

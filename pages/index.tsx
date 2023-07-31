@@ -23,7 +23,7 @@ export default function SignIn() {
   });
   const Login = (value: UserProps) => {
     axios
-      .post("https://web-production-9c5b.up.railway.app/api/account/login/", {
+      .post("", {
         username: value.username,
         password: value.password,
       })

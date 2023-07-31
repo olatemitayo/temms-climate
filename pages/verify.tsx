@@ -1,28 +1,31 @@
+import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { isNotEmpty, useForm } from "@mantine/form";
+import { LoadingOverlay, Group, PinInput } from "@mantine/core";
+import { toast } from "react-toastify";
 import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
-import { LoadingOverlay, Group, PinInput } from "@mantine/core";
-import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "react-toastify";
 
-interface VerifyProps {}
+interface VerifyProps {
+  otp: string;
+}
 
 export default function Verify() {
   const [visible, setVisible] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState<VerifyProps>({ otp: "" });
   const router = useRouter();
 
-  const VerifyPin = () => {
+  const VerifyPin = (value: VerifyProps) => {
     axios
       .post(
         "",
         {
           email: router.query.email,
-          pin: otp,
+          otp: otp,
         },
         {
           headers: {
@@ -35,6 +38,7 @@ export default function Verify() {
           setVisible(true);
           router.push(`/create-new-password?email=${router.query.email}`);
           toast.success("Please create a new Password");
+          setOtp(otp);
         }
       })
       .catch(function (error) {
@@ -43,9 +47,14 @@ export default function Verify() {
       });
   };
 
-  const handlesubmit = (e: FormEvent) => {
-    VerifyPin();
-  };
+  const form = useForm({
+    initialValues: { otp: "" },
+
+    // this validates the form
+    validate: {
+      otp: isNotEmpty(),
+    },
+  });
   return (
     <main className="bg-[#eadfd8] relative">
       <div className="absolute left-[10px] top-[10px]">
@@ -71,12 +80,15 @@ export default function Verify() {
             </div>
             <div>
               <form
-                onSubmit={handlesubmit}
+                onSubmit={form.onSubmit((value) => {
+                  VerifyPin(value);
+                })}
                 action=""
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
                 <Group position="center">
                   <PinInput
+                    {...form.getInputProps("pin")}
                     classNames={{
                       input: "w-full h-[clamp(50px,7vw,104px)]",
                     }}

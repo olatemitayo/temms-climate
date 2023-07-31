@@ -34,6 +34,7 @@ export default function ForgotPassword() {
           setVisible(true);
           toast.success("OTP sent, please check your email");
           router.push(`/verify?email=${value.email}`);
+          setEmail(email);
         }
       })
       .catch(function (error) {
