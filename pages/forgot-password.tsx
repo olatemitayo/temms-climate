@@ -36,8 +36,8 @@ export default function Login() {
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
                 <TextInput
-                  placeholder="enter your username"
-                  label="Username"
+                  placeholder="enter your email address"
+                  label="Email Address"
                   radius="md"
                   size="lg"
                   withAsterisk

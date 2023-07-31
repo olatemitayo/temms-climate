@@ -1,12 +1,63 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { isNotEmpty, useForm } from "@mantine/form";
+import { toast } from "react-toastify";
+import { LoadingOverlay, PasswordInput, TextInput } from "@mantine/core";
+import router from "next/router";
 import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
-import { PasswordInput, TextInput } from "@mantine/core";
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+interface AccountProps {
+  email: string;
+  username: string;
+  password: string;
+}
+
 export default function CreateAccount() {
+  const [visible, setVisible] = useState(false);
+  const [userDetails, setUserDetails] = useState<AccountProps>({
+    email: "",
+    username: "",
+    password: "",
+  });
+
+  const SignUp = (value: AccountProps) => {
+    axios
+      .post("", {
+        email: value.email,
+        username: value.username,
+        password: value.password,
+      })
+      .then(function (res) {
+        if (res.data) {
+          localStorage.setItem("my-user", JSON.stringify(res.data));
+          setVisible(true);
+          toast.success("Account successfully created", { autoClose: 2000 });
+          toast.success("Please Sign In");
+          router.push("/");
+          setUserDetails(userDetails);
+        }
+      })
+      .catch(function (error) {
+        setVisible(false);
+        toast.error(error);
+      });
+  };
+
+  const form = useForm({
+    initialValues: { email: "", username: "", password: "" },
+
+    // this validates the form
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      username: (value) =>
+        value.length < 2 ? "First name must have at least 2 letters" : null,
+      password: isNotEmpty(),
+    },
+  });
   return (
     <main className="bg-[#eadfd8] relative">
       <div className="absolute left-[10px] top-[10px]">
@@ -20,6 +71,9 @@ export default function CreateAccount() {
             </div>
             <div>
               <form
+                onSubmit={form.onSubmit((value) => {
+                  SignUp(value);
+                })}
                 action=""
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
@@ -85,6 +139,7 @@ export default function CreateAccount() {
           />
         </div>
       </div>
+      <LoadingOverlay visible={visible} overlayBlur={2} />
     </main>
   );
 }

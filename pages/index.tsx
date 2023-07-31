@@ -1,12 +1,63 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { isNotEmpty, useForm } from "@mantine/form";
+import { toast } from "react-toastify";
+import { LoadingOverlay, PasswordInput, TextInput } from "@mantine/core";
+import router from "next/router";
 import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
-import { PasswordInput, TextInput } from "@mantine/core";
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Login() {
+interface UserProps {
+  username: string;
+  password: string;
+}
+
+export default function SignIn() {
+  const [visible, setVisible] = useState(false);
+  const [userDetails, setUserDetails] = useState<UserProps>({
+    username: "",
+    password: "",
+  });
+  const Login = (value: UserProps) => {
+    axios
+      .post("https://web-production-9c5b.up.railway.app/api/account/login/", {
+        username: value.username,
+        password: value.password,
+      })
+      .then(function (res) {
+        if (res.data) {
+          localStorage.setItem("my-user", JSON.stringify(res.data));
+          setVisible(true);
+          toast.success("Welcome to your personalised weather app", {
+            autoClose: 3000,
+          });
+          router.push("/weather");
+          setUserDetails(userDetails);
+        }
+      })
+      .catch(function (error) {
+        setVisible(false);
+        toast.error(error);
+      });
+  };
+
+  const form = useForm({
+    initialValues: { username: "", password: "" },
+
+    //this validates the form
+    validate: {
+      username: (value) =>
+        /^\S+@\S+$/.test(value) || value.length > 4
+          ? null
+          : "Invalid email" || value.length < 4
+          ? "username must have at least 4 letters"
+          : null,
+      password: isNotEmpty(),
+    },
+  });
   return (
     <main className="bg-[#eadfd8] relative">
       <div className="absolute left-[10px] top-[10px]">
@@ -23,12 +74,16 @@ export default function Login() {
             </div>
             <div>
               <form
+                onSubmit={form.onSubmit((value) => {
+                  Login(value);
+                })}
                 action=""
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
                 <TextInput
-                  placeholder="enter your username"
-                  label="Username"
+                  placeholder="enter your email or username"
+                  {...form.getInputProps("username")}
+                  label="Email/Username"
                   radius="md"
                   size="lg"
                   withAsterisk
@@ -41,6 +96,7 @@ export default function Login() {
 
                 <PasswordInput
                   placeholder="enter your password"
+                  {...form.getInputProps("password")}
                   label="Password"
                   radius="md"
                   size="lg"
@@ -66,7 +122,7 @@ export default function Login() {
                     </p>
                   </Link>
                 </div>
-                <Button text="Log in" />
+                <Button text="Log in" type="submit" />
               </form>
             </div>
           </div>
@@ -81,6 +137,7 @@ export default function Login() {
           />
         </div>
       </div>
+      <LoadingOverlay visible={visible} overlayBlur={2} />
     </main>
   );
 }
