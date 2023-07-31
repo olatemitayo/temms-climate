@@ -1,12 +1,52 @@
+import axios from "axios";
+import { useRouter } from "next/router";
 import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
-import { Group, PinInput, TextInput } from "@mantine/core";
-import React from "react";
+import { LoadingOverlay, Group, PinInput } from "@mantine/core";
+import React, { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-toastify";
+
+interface VerifyProps {}
 
 export default function Verify() {
+  const [visible, setVisible] = useState(false);
+  const [otp, setOtp] = useState("");
+  const router = useRouter();
+
+  const VerifyPin = () => {
+    axios
+      .post(
+        "",
+        {
+          email: router.query.email,
+          pin: otp,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(function (res) {
+        if (res) {
+          setVisible(true);
+          router.push(`/create-new-password?email=${router.query.email}`);
+          toast.success("Please create a new Password");
+        }
+      })
+      .catch(function (error) {
+        setVisible(false);
+        toast.error(error);
+      });
+  };
+
+  const handlesubmit = (e: FormEvent) => {
+    e.preventDefault();
+    VerifyPin();
+  };
   return (
     <main className="bg-[#eadfd8] relative">
       <div className="absolute left-[10px] top-[10px]">
@@ -32,6 +72,7 @@ export default function Verify() {
             </div>
             <div>
               <form
+                onSubmit={handlesubmit}
                 action=""
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
@@ -60,6 +101,7 @@ export default function Verify() {
           />
         </div>
       </div>
+      <LoadingOverlay visible={visible} overlayBlur={2} />
     </main>
   );
 }

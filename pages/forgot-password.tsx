@@ -1,12 +1,56 @@
 import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
-import { TextInput } from "@mantine/core";
-import React from "react";
+import { isNotEmpty, useForm } from "@mantine/form";
+import { toast } from "react-toastify";
+import { LoadingOverlay, TextInput } from "@mantine/core";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import router from "next/router";
 
-export default function Login() {
+interface ForgotPasswordProps {
+  email: string;
+}
+
+export default function ForgotPassword() {
+  const [visible, setVisible] = useState(false);
+  const [email, setEmail] = useState<ForgotPasswordProps>({ email: "" });
+
+  const Email = (value: ForgotPasswordProps) => {
+    axios
+      .post(
+        "",
+        { email: email },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(function (res) {
+        if (res.status === 200) {
+          setVisible(true);
+          toast.success("OTP sent, please check your email");
+          router.push(`/verify?email=${value.email}`);
+        }
+      })
+      .catch(function (error) {
+        setVisible(false);
+        toast.error(error);
+      });
+  };
+
+  const form = useForm({
+    initialValues: {
+      email: "",
+    },
+    // this validates the form
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
   return (
     <main className="bg-[#eadfd8] relative">
       <div className="absolute left-[10px] top-[10px]">
@@ -32,12 +76,16 @@ export default function Login() {
             </div>
             <div>
               <form
+                onSubmit={form.onSubmit((value) => {
+                  Email(value);
+                })}
                 action=""
                 className="mt-[clamp(2rem,5vw,5rem)] flex flex-col gap-[clamp(1rem,2vw,2rem)] w-full"
               >
                 <TextInput
                   placeholder="enter your email address"
                   label="Email Address"
+                  {...form.getInputProps("email")}
                   radius="md"
                   size="lg"
                   withAsterisk
@@ -49,7 +97,7 @@ export default function Login() {
                   }}
                 />
 
-                <Button text="Reset Password" />
+                <Button text="Reset Password" type="submit" />
               </form>
             </div>
           </div>
@@ -64,6 +112,7 @@ export default function Login() {
           />
         </div>
       </div>
+      <LoadingOverlay visible={visible} overlayBlur={2} />
     </main>
   );
 }

@@ -54,7 +54,7 @@ export default function CreateAccount() {
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
       username: (value) =>
-        value.length < 2 ? "First name must have at least 2 letters" : null,
+        value.length < 4 ? "username must have at least 4 letters" : null,
       password: isNotEmpty(),
     },
   });
@@ -110,6 +110,7 @@ export default function CreateAccount() {
                   {...form.getInputProps("password")}
                   radius="md"
                   size="lg"
+                  autoComplete="false"
                   withAsterisk
                   required
                   classNames={{
@@ -125,9 +126,9 @@ export default function CreateAccount() {
                     <span className="text-[#025162] font-bold">Sign In</span>
                   </p>
                 </Link>
-                <Link href="/">
-                  <Button text="Create Account" type="submit" />
-                </Link>
+                {/* <Link href=""> */}
+                <Button text="Create Account" type="submit" />
+                {/* </Link> */}
               </form>
             </div>
           </div>
