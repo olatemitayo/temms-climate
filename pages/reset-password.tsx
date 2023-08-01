@@ -8,7 +8,7 @@ import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
 import Image from "next/image";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 interface CreateNewPasswordProps {
   new_password: string;
@@ -17,30 +17,37 @@ interface CreateNewPasswordProps {
 
 export default function CreateNewPassword() {
   const [visible, setVisible] = useState(false);
-  const router = useRouter();
   const [password, setPassword] = useState<CreateNewPasswordProps>({
     new_password: "",
     confirm_password: "",
   });
+  const router = useRouter();
 
-  const newPass = (value: CreateNewPasswordProps) => {
-    axios
-      .post("", {
-        email: router.query.email,
-        new_password: value.new_password,
-        confirm_password: value.confirm_password,
-      })
-      .then(function (res) {
-        if (res.data) {
-          setVisible(true);
-          toast.success("Password reset complete");
-          router.push("/");
+  const newPass = async (value: CreateNewPasswordProps) => {
+    try {
+      const response = await axios.post(
+        "https://weatherapi-xlqh.onrender.com/api/reset-password/",
+        {
+          email: router.query.email,
+          new_password: value.new_password,
+          confirm_password: value.confirm_password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      })
-      .catch(function (error) {
-        setVisible(false);
-        toast.error(error);
-      });
+      );
+      if (response.data) {
+        setVisible(true);
+        toast.success("Password reset complete");
+        setPassword(password);
+        router.push("/");
+      }
+    } catch (error) {
+      setVisible(false);
+      toast.error("An error occured, please try again");
+    }
   };
 
   const form = useForm({
@@ -54,6 +61,7 @@ export default function CreateNewPassword() {
 
   return (
     <main className="bg-[#eadfd8] relative">
+      <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
         <Logo />
       </div>
@@ -113,7 +121,7 @@ export default function CreateNewPassword() {
                   }}
                 />
 
-                <Button text="Create new password" />
+                <Button text="Create new password" type="submit" />
               </form>
             </div>
           </div>

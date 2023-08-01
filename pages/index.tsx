@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { isNotEmpty, useForm } from "@mantine/form";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { LoadingOverlay, PasswordInput, TextInput } from "@mantine/core";
 import router from "next/router";
 import Button from "@/components/auth/button";
@@ -21,27 +21,33 @@ export default function SignIn() {
     username: "",
     password: "",
   });
-  const Login = (value: UserProps) => {
-    axios
-      .post("", {
-        username: value.username,
-        password: value.password,
-      })
-      .then(function (res) {
-        if (res.data) {
-          localStorage.setItem("my-user", JSON.stringify(res.data));
-          setVisible(true);
-          toast.success("Welcome to your personalised weather app", {
-            autoClose: 3000,
-          });
-          router.push("/weather");
-          setUserDetails(userDetails);
+  const Login = async (value: UserProps) => {
+    try {
+      const response = await axios.post(
+        "https://weatherapi-xlqh.onrender.com/api/login/",
+        {
+          username: value.username,
+          password: value.password,
+        },
+        {
+          headers: {
+            "Content-Type": "applocation/json",
+          },
         }
-      })
-      .catch(function (error) {
-        setVisible(false);
-        toast.error(error);
-      });
+      );
+      if (response.data) {
+        localStorage.setItem("my-user", JSON.stringify(response.data));
+        setVisible(true);
+        toast.success("Welcome to your personalised weather app", {
+          autoClose: 3000,
+        });
+        router.push("/weather");
+        setUserDetails(userDetails);
+      }
+    } catch (error) {
+      setVisible(false);
+      toast.error("An error occured");
+    }
   };
 
   const form = useForm({
@@ -60,6 +66,7 @@ export default function SignIn() {
   });
   return (
     <main className="bg-[#eadfd8] relative">
+      <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
         <Logo />
       </div>
@@ -122,7 +129,7 @@ export default function SignIn() {
                     </p>
                   </Link>
                 </div>
-                <Button text="Log in" type="submit" />
+                <Button text="Log in" />
               </form>
             </div>
           </div>

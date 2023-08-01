@@ -1,8 +1,8 @@
 import Button from "@/components/auth/button";
 import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
-import { isNotEmpty, useForm } from "@mantine/form";
-import { toast } from "react-toastify";
+import { useForm } from "@mantine/form";
+import { ToastContainer, toast } from "react-toastify";
 import { LoadingOverlay, TextInput } from "@mantine/core";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -18,29 +18,28 @@ export default function ForgotPassword() {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState<ForgotPasswordProps>({ email: "" });
 
-  const Email = (value: ForgotPasswordProps) => {
-    axios
-      .post(
-        "",
-        { email: email },
+  const Email = async (value: ForgotPasswordProps) => {
+    try {
+      const response = await axios.post(
+        "https://weatherapi-xlqh.onrender.com/api/forgot-password/",
+        { email: value.email },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
-      )
-      .then(function (res) {
-        if (res.status === 200) {
-          setVisible(true);
-          toast.success("OTP sent, please check your email");
-          router.push(`/verify?email=${value.email}`);
-          setEmail(email);
-        }
-      })
-      .catch(function (error) {
-        setVisible(false);
-        toast.error(error);
-      });
+      );
+      if (response.status === 200) {
+        setVisible(true);
+        localStorage.setItem("my-user", JSON.stringify(response.data));
+        toast.success("OTP sent, please check your email");
+        router.push(`/verify?email=${value.email}`);
+        setEmail(email);
+      }
+    } catch (error) {
+      setVisible(false);
+      toast.error(error);
+    }
   };
 
   const form = useForm({
@@ -54,6 +53,7 @@ export default function ForgotPassword() {
   });
   return (
     <main className="bg-[#eadfd8] relative">
+      <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
         <Logo />
       </div>
