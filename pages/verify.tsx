@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import withAuth from "@/components/protected-routes";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { isNotEmpty, useForm } from "@mantine/form";

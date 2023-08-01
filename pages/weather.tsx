@@ -1,7 +1,8 @@
-import CustomButton from "@/components/auth/button";
 import React from "react";
+import withAuth from "@/components/protected-routes";
+import CustomButton from "@/components/auth/button";
 
-export default function weather() {
+function weather() {
   const handleLogout = () => {
     localStorage.clear();
     window.location.href = "/";
@@ -18,3 +19,5 @@ export default function weather() {
     </>
   );
 }
+
+export default withAuth(weather);
