@@ -31,13 +31,13 @@ export default function SignIn() {
         },
         {
           headers: {
-            "Content-Type": "applocation/json",
+            "Content-Type": "application/json",
           },
         }
       );
+      setVisible(true);
       if (response.data) {
         localStorage.setItem("my-user", JSON.stringify(response.data));
-        setVisible(true);
         toast.success("Welcome to your personalised weather app", {
           autoClose: 3000,
         });
@@ -129,7 +129,7 @@ export default function SignIn() {
                     </p>
                   </Link>
                 </div>
-                <Button text="Log in" />
+                <Button text="Log in" type="submit" />
               </form>
             </div>
           </div>
