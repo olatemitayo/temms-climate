@@ -76,7 +76,7 @@ export default function CreateAccount() {
     },
   });
   return (
-    <main className="bg-[#eadfd8] relative">
+    <main className="bg-[#f0f0f0] relative">
       <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
         <Logo />
@@ -155,8 +155,8 @@ export default function CreateAccount() {
                       "focus:border-[#eadfd8] text-[#4e4d4c] !text-[clamp(0.8rem,2vw,1.15rem)]  ",
                   }}
                 />
-                <Link href="/" className="text-end">
-                  <p className="text-[#e87d4d]  text-[12px]">
+                <Link href="/" className="text-end md:mt-[-10px] mt-[-20px]">
+                  <p className="text-[#1c1c1c]  text-[12px]">
                     Have an account?{" "}
                     <span className="text-[#025162] font-bold">Sign In</span>
                   </p>

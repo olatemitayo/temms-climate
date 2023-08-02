@@ -65,7 +65,7 @@ export default function SignIn() {
     },
   });
   return (
-    <main className="bg-[#eadfd8] relative">
+    <main className="bg-[#f0f0f0] relative">
       <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
         <Logo />
@@ -118,13 +118,13 @@ export default function SignIn() {
                 />
                 <div className="flex flex-row-reverse justify-between">
                   <Link href="/signup" className="text-end">
-                    <p className="text-[#e87d4d] font-bold text-[12px]">
+                    <p className="text-[#1c1c1c]  text-[12px]">
                       Dont have an account?{" "}
                       <span className="text-[#025162] font-bold">Sign Up</span>
                     </p>
                   </Link>
                   <Link href="/forgot-password" className="text-end">
-                    <p className="text-[#e87d4d] font-bold text-[12px]">
+                    <p className="text-[#2c3f7d] font-bold text-[12px]">
                       Forgot password?
                     </p>
                   </Link>

@@ -69,7 +69,7 @@ export default function CreateNewPassword() {
         <div className="md:w-full w-[50%] flex justify-between h-[100vh] flex-col py-[clamp(0.5rem,3vw,3rem)] px-[clamp(1rem,5vw,5rem)] ">
           <Link
             href="/verify"
-            className="flex items-center absolute top-[60px] lg:top-[40px]   text-start sm:w-[85%] lg:w-[60%] text-[#4e4d4c]  "
+            className="flex items-center absolute top-[80px]  text-start sm:w-[85%] lg:w-[60%] text-[#4e4d4c]  "
           >
             <p className="text-[clamp(0.6rem,2vw,1rem)] text-[#8F9198]">
               &lt; back

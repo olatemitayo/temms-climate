@@ -5,8 +5,8 @@ interface ButtonProp extends ComponentProps<"button"> {
   text?: string;
 }
 
-export default function CustomButton(props: ButtonProp) {
-  const { text, ...rest } = props;
+export default function CustomButton({ text, ...rest }: ButtonProp) {
+  // const { text, ...rest } = props;
   const buttonRef: Ref<HTMLButtonElement> = React.createRef();
 
   return (
@@ -16,7 +16,7 @@ export default function CustomButton(props: ButtonProp) {
         radius="md"
         {...rest}
         ref={buttonRef}
-        className=" w-full bg-[#025162] !font-normal hover:bg-[#025162] "
+        className=" w-full bg-[#2c3f7d] hover:bg-[#2b3a6e] !font-normal  "
       >
         {text}
       </MantineButton>
