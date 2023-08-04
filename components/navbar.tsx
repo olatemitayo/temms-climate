@@ -23,14 +23,8 @@ const sideItems = [
   {
     id: "3",
     img: "",
-    title: "Saved ocation",
+    title: "Saved Location",
     link: "/location",
-  },
-  {
-    id: "4",
-    img: "",
-    title: "Calender",
-    link: "/calender",
   },
 ];
 
@@ -53,43 +47,51 @@ export default function Navbar() {
   }, []);
   return (
     <>
-      <div className="  bg-[#d0d7ee] flex justify-between items-center px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] ">
-        <figure>
-          <Logo />
-        </figure>
-        <ul className="flex gap-[clamp(8px,3vw,60px)] text-[clamp(12px,2vw,18px)] lg:text-[16px] whitespace-nowrap decoration-none text-[#2c3f7d] font-bold cmd:hidden">
-          {sideItems.map((item) => (
-            <Link key={item?.id} href={item?.link}>
-              <img src="" alt="" />
-              <li key={item?.id}>{item?.title}</li>
-            </Link>
-          ))}
-        </ul>
-        <div className="flex items-center gap-2 cmd:hidden">
-          <SearchInput />
-          <Button
-            className=" bg-[#2c3f7d] hover:bg-[#2b3a6e] "
-            onClick={handleLogOut}
-          >
-            Log Out
-          </Button>
-        </div>
-        <div className="hidden cmd:flex">
-          <Popover width={70} position="bottom" withArrow shadow="md">
-            <Popover.Target>
-              <Burger opened={opened} onClick={toggle} aria-label={label} />
-            </Popover.Target>
-            <Popover.Dropdown>
-              <ul className="flex gap-[clamp(8px,3vw,60px)] text-[clamp(12px,2vw,18px)] lg:text-[16px] whitespace-nowrap decoration-none text-[#2c3f7d] font-bold cmd:hidden">
-                {sideItems.map((item) => (
-                  <Link key={item?.id} href={item?.link}>
-                    <img src="" alt="" />
-                    <li key={item?.id}>{item?.title}</li>
-                  </Link>
-                ))}
-              </ul>
-            </Popover.Dropdown>
-          </Popover>
+      <div className="bg-[#f0eeee] ">
+        <div className="mx-auto  flex justify-between items-center px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] max-w-[1500px]">
+          <figure>
+            <Logo />
+          </figure>
+          <ul className="flex gap-[clamp(8px,3vw,60px)] text-[clamp(12px,2vw,18px)] lg:text-[16px] whitespace-nowrap decoration-none text-[#1c1c1c]  cmd:hidden">
+            {sideItems.map((item) => (
+              <Link key={item?.id} href={item?.link}>
+                <img src="" alt="" />
+                <li key={item?.id}>{item?.title}</li>
+              </Link>
+            ))}
+          </ul>
+          <div className="flex items-center gap-2 cmd:hidden">
+            <h2 style={{ fontFamily: "cursive" }} className="text-xl">
+              Hi, {title?.data?.username}
+            </h2>
+            <Button
+              className=" bg-[#2c3f7d] hover:bg-[#2b3a6e] "
+              onClick={handleLogOut}
+            >
+              Log Out
+            </Button>
+          </div>
+          <div className="items-center hidden gap-4 cmd:flex">
+            <Popover width={100} position="left" shadow="md">
+              <Popover.Target>
+                <Burger opened={opened} onClick={toggle} aria-label={label} />
+              </Popover.Target>
+              <Popover.Dropdown>
+                <ul
+                  className="flex flex-col
+                 gap-[clamp(8px,2vw,30px)] text-[clamp(10px,2vw,16px)] whitespace-nowrap text-[#1c1c1c]  "
+                >
+                  {sideItems.map((item) => (
+                    <Link key={item?.id} href={item?.link}>
+                      <img src="" alt="" />
+                      <li key={item?.id}>{item?.title}</li>
+                    </Link>
+                  ))}
+                </ul>
+                {/* <h1>hii</h1> */}
+              </Popover.Dropdown>
+            </Popover>
+          </div>
         </div>
       </div>
     </>

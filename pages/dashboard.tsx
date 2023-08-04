@@ -2,6 +2,7 @@ import React from "react";
 import withAuth from "@/components/protected-routes";
 import CustomButton from "@/components/auth/button";
 import Navbar from "@/components/navbar";
+import SearchInput from "@/components/search-input";
 
 function weather() {
   // const handleLogout = () => {
@@ -11,8 +12,10 @@ function weather() {
 
   return (
     <>
-      <div></div>
-      <Navbar />
+      <div>
+        <Navbar />
+        <SearchInput />
+      </div>
     </>
   );
 }
