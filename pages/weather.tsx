@@ -1,21 +1,18 @@
 import React from "react";
 import withAuth from "@/components/protected-routes";
 import CustomButton from "@/components/auth/button";
+import Navbar from "@/components/navbar";
 
 function weather() {
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = "/";
-  };
+  // const handleLogout = () => {
+  //   localStorage.clear();
+  //   window.location.href = "/";
+  // };
 
   return (
     <>
-      <div>weather</div>
-      <CustomButton
-        onClick={handleLogout}
-        className="!w-[300px]"
-        text="Log out"
-      />
+      <div></div>
+      <Navbar />
     </>
   );
 }

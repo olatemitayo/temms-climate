@@ -9,6 +9,7 @@ import AuthHeading from "@/components/auth/auth-heading";
 import Logo from "@/components/common/logo";
 import Image from "next/image";
 import Link from "next/link";
+// import Slider from "@/components/slider";
 
 interface UserProps {
   username: string;
@@ -142,6 +143,7 @@ export default function SignIn() {
             className="!w-full !h-[100vh]"
             alt={"weather"}
           />
+          {/* <Slider /> */}
         </div>
       </div>
       <LoadingOverlay visible={visible} overlayBlur={2} />

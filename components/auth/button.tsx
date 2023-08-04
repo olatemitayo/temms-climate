@@ -16,7 +16,7 @@ export default function CustomButton({ text, ...rest }: ButtonProp) {
         radius="md"
         {...rest}
         ref={buttonRef}
-        className=" w-full bg-[#2c3f7d] hover:bg-[#2b3a6e] !font-normal  "
+        className=" w-full bg-[#2c3f7d] hover:bg-[#2b3a6e]   "
       >
         {text}
       </MantineButton>
