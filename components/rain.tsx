@@ -1,10 +1,10 @@
-import React from "react";
-import { Progress } from "@mantine/core";
+import { Progress, clsx } from "@mantine/core";
 
-export default function Rain() {
+
+export default function Rain({ className }) {
   return (
     <>
-      <div className="grid gap-4 mt-4">
+      <div className={clsx("grid gap-4 mt-4", className)}>
         <h3>Chances of Rain</h3>
         <div className="grid gap-6">
           <div className="flex justify-between">

@@ -5,9 +5,7 @@ import Link from "next/link";
 import { UserDetails } from "@/pages/_app";
 import { Burger, Button, Popover, Text } from "@mantine/core";
 
-import SearchInput from "./search-input";
-
-const sideItems = [
+const navItems = [
   {
     id: "1",
     img: "",
@@ -53,7 +51,7 @@ export default function Navbar() {
             <Logo />
           </figure>
           <ul className="flex gap-[clamp(8px,3vw,60px)] text-[clamp(12px,2vw,18px)] lg:text-[16px] whitespace-nowrap decoration-none text-[#1c1c1c]  cmd:hidden">
-            {sideItems.map((item) => (
+            {navItems.map((item) => (
               <Link key={item?.id} href={item?.link}>
                 <img src="" alt="" />
                 <li key={item?.id}>{item?.title}</li>
@@ -81,14 +79,13 @@ export default function Navbar() {
                   className="flex flex-col
                  gap-[clamp(8px,2vw,30px)] text-[clamp(10px,2vw,16px)] whitespace-nowrap text-[#1c1c1c]  "
                 >
-                  {sideItems.map((item) => (
+                  {navItems.map((item) => (
                     <Link key={item?.id} href={item?.link}>
                       <img src="" alt="" />
                       <li key={item?.id}>{item?.title}</li>
                     </Link>
                   ))}
                 </ul>
-                {/* <h1>hii</h1> */}
               </Popover.Dropdown>
             </Popover>
           </div>

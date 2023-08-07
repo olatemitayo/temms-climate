@@ -31,7 +31,7 @@ export default function Overview() {
     <>
       <div>
         <div className="">
-          <h1 className="mb-4">Today's overview</h1>
+          <h1 className="mb-4  text-[#2c3f7d]">Today's overview</h1>
           <div className="flex flex-wrap items-center justify-between gap-3 ">
             {Data.map((item) => (
               <div
