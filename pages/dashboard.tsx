@@ -3,6 +3,7 @@ import withAuth from "@/components/protected-routes";
 import CustomButton from "@/components/auth/button";
 import Navbar from "@/components/navbar";
 import SearchInput from "@/components/search-input";
+import Weather from "@/components/weather";
 
 function weather() {
   // const handleLogout = () => {
@@ -15,6 +16,7 @@ function weather() {
       <div>
         <Navbar />
         <SearchInput />
+        <Weather />
       </div>
     </>
   );

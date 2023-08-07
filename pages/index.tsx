@@ -42,7 +42,7 @@ export default function SignIn() {
         toast.success("Welcome to your personalised weather app", {
           autoClose: 3000,
         });
-        router.push("/weather");
+        router.push("/dashboard");
         setUserDetails(userDetails);
       }
     } catch (error) {

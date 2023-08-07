@@ -4,10 +4,8 @@ import type { AppProps } from "next/app";
 import { Dispatch, SetStateAction, useState, createContext } from "react";
 
 export interface UserDetails {
-  data: {
-    email?: string;
-    username: string;
-  };
+  email?: string;
+  username: string;
 }
 
 export interface User {

@@ -65,7 +65,7 @@ export default function Navbar() {
               Hi, {title?.data?.username}
             </h2>
             <Button
-              className=" bg-[#2c3f7d] hover:bg-[#2b3a6e] "
+              className=" bg-[#2c3f7d] hover:bg-[#333d5f] "
               onClick={handleLogOut}
             >
               Log Out
