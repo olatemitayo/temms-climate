@@ -48,13 +48,12 @@ export default function CreateAccount() {
         toast.success("Account successfully created", { autoClose: 2000 });
         toast.success("Please Sign In");
         router.push("/");
-        console.log(response.data);
+
         setUserDetails(userDetails);
       }
     } catch (error) {
       setVisible(false);
       toast.error("Error creating account. Please try again later.");
-      console.log(error);
     }
   };
 

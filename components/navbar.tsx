@@ -38,7 +38,6 @@ export default function Navbar() {
   useEffect(() => {
     if (localStorage.getItem("my-user")) {
       setTitle(JSON.parse(localStorage.getItem("my-user") as string));
-      console.log(JSON.parse(localStorage.getItem("my-user") as string));
     }
 
     return () => {};
@@ -59,9 +58,6 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="flex items-center gap-2 cmd:hidden">
-            <h2 style={{ fontFamily: "cursive" }} className="text-xl">
-              Hi, {title?.data?.username}
-            </h2>
             <Button
               className=" bg-[#2c3f7d] hover:bg-[#333d5f] "
               onClick={handleLogOut}

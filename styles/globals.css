@@ -89,7 +89,7 @@
 }
 
 h1 {
-  font-size: clamp(20px, 2vw, 24px);
+  font-size: clamp(24px, 2vw, 28px);
 }
 
 h3 {
@@ -97,5 +97,5 @@ h3 {
 }
 
 p {
-  font-size: clamp(10px, 1vw, 16px);
+  font-size: clamp(12px, 1vw, 16px);
 }
