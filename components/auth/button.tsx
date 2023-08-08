@@ -6,7 +6,6 @@ interface ButtonProp extends ComponentProps<"button"> {
 }
 
 export default function CustomButton({ text, ...rest }: ButtonProp) {
-  // const { text, ...rest } = props;
   const buttonRef: Ref<HTMLButtonElement> = React.createRef();
 
   return (

@@ -10,7 +10,6 @@ export default function AuthHeading({
   paragraph,
   ...rest
 }: AuthHeadingProps) {
-  // const { heading, paragraph, ...rest } = props;
   return (
     <div>
       <h1
