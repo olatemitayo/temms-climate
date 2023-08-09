@@ -45,7 +45,7 @@ export default function Weather() {
     return () => {};
   }, []);
 
-  const url = `http://api.weatherapi.com/v1/current.json?key=74bcc7f8f64d449db7b103222230808&q=${city}&aqi=no`;
+  const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_KEY}&q=${city}&aqi=no`;
 
   const Climate = async (e) => {
     e.preventDefault();
@@ -55,10 +55,7 @@ export default function Weather() {
       const res = await axios.get(url);
       setWeather(res.data);
       setCity("");
-      console.log(res.data);
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-    }
+    } catch (error) {}
     setLoading(false);
   };
 
