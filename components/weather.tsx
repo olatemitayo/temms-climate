@@ -11,17 +11,24 @@ type weatherType = {
       text?: string;
       icon?: string;
     };
+    feelslike_c?: number;
     wind_kph?: number;
     uv?: number;
     pressure_mb?: number;
     feelslike_f?: number;
     humidity?: number;
     temp_c?: number;
+    precip_mm: number;
+    wind_dir: string;
   };
   location: {
     country?: string;
     name?: string;
     localtime?: string;
+    region?: string;
+    lat: number;
+    lon: number;
+    tz_id: string;
   };
 };
 
@@ -71,7 +78,7 @@ export default function Weather() {
       </div>
       {weather ? (
         <div className="mx-auto  flex cmd:flex-col-reverse justify-between items-center px-[clamp(20px,3vw,40px)] py-[clamp(10px,2vw,16px)] max-w-[1500px] gap-4 ">
-          <div className="w-[70%] cmd:w-[100%] max-h-[100%] min-h-[500px]   px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] border border-[#f0eeee] rounded-2xl">
+          <div className="w-[70%] cmd:w-[100%] max-h-[100%] min-h-[550px]   px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] border border-[#f0eeee] rounded-2xl">
             <div className="">
               <div className="">
                 <h1 className="mb-4  text-[#2c3f7d]">Today's overview</h1>
@@ -135,6 +142,7 @@ export default function Weather() {
               <img src="/sunny.svg" alt="" className="w-[40px]" />
               <div className="flex items-center justify-between gap-2 cmd:flex-col cmd:items-start">
                 <h1 className=" text-[#2c3f7d]">Average Weekly Temperature</h1>
+
                 <div>
                   <p className="text-[#999eb4]">{}</p>
                 </div>
@@ -142,7 +150,12 @@ export default function Weather() {
             </div>
             <div className="h-[20%]">
               <div className="grid gap-4 mt-4">
-                <h3>Chances of Rain</h3>
+                <div className="flex items-center gap-8">
+                  <h3>Chances of Rain</h3>
+                  <span className="text-red-600">
+                    *real life data not currently available
+                  </span>
+                </div>
                 <div className="grid gap-6">
                   <div className="flex items-center justify-between">
                     <p>7am</p>
@@ -156,7 +169,7 @@ export default function Weather() {
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <p>7am</p>
+                    <p>8am</p>
                     <Progress
                       value={84}
                       label="84%"
@@ -167,7 +180,7 @@ export default function Weather() {
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <p>7am</p>
+                    <p>9am</p>
                     <Progress
                       value={67}
                       label="67%"
@@ -178,7 +191,7 @@ export default function Weather() {
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <p>7am</p>
+                    <p>10 am</p>
                     <Progress
                       value={50}
                       label="50%"
@@ -193,12 +206,13 @@ export default function Weather() {
             </div>
           </div>
 
-          <div className="flex-1 cmd:w-[100%] min-h-[500px] rounded-2xl bg-[#172658]  px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,20px)] text-[#fff]">
+          <div className="flex-1 cmd:w-[100%] min-h-[550px] rounded-2xl bg-[#172658]  px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,20px)] text-[#fff]">
             <div className="">
               <div className="flex items-center justify-between">
                 <div>
                   <h1 className="">{title?.data?.username}</h1>
-                  <p>{`${weather?.location?.name}, ${weather?.location?.country}`}</p>
+                  <p>{`${weather?.location?.name} ${weather?.location?.region}`}</p>
+                  <p>{weather?.location?.country}</p>
                 </div>
                 <div>
                   <h1>{weather?.location?.localtime.slice(-5)}</h1>
@@ -219,53 +233,30 @@ export default function Weather() {
               </div>
             </div>
             <div>
-              <div className={clsx("grid gap-4 mt-4")}>
-                <h3>Chances of Rain</h3>
-                <div className="grid gap-6">
-                  <div className="flex items-center justify-between">
-                    <p>7am</p>
-                    <Progress
-                      value={75}
-                      label="75%"
-                      size={28}
-                      radius="xl"
-                      color="#999eb4"
-                      className="w-[80%]"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <p>7am</p>
-                    <Progress
-                      value={84}
-                      label="84%"
-                      size={28}
-                      radius="xl"
-                      color="#999eb4"
-                      className="w-[80%]"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <p>7am</p>
-                    <Progress
-                      value={67}
-                      label="67%"
-                      size={28}
-                      radius="xl"
-                      color="#999eb4"
-                      className="w-[80%]"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <p>7am</p>
-                    <Progress
-                      value={50}
-                      label="50%"
-                      size={28}
-                      radius="xl"
-                      color="#999eb4"
-                      className="w-[80%]"
-                    />
-                  </div>
+              <div className="grid gap-4 mt-4">
+                <div className="flex justify-between">
+                  <h3>Latitude</h3>
+                  <h3>{weather?.location?.lat}</h3>
+                </div>
+                <div className="flex justify-between">
+                  <h3>Longitude</h3>
+                  <h3>{weather?.location?.lon}</h3>
+                </div>
+                <div className="flex justify-between">
+                  <h3>Feels like</h3>
+                  <h3>{weather?.current?.feelslike_c}°C</h3>
+                </div>
+                <div className="flex justify-between">
+                  <h3>Precipitation</h3>
+                  <h3>{weather?.current?.precip_mm}mm</h3>
+                </div>
+                <div className="flex justify-between">
+                  <h3>Wind Direction</h3>
+                  <h3>{weather?.current?.wind_dir}</h3>
+                </div>
+                <div className="flex justify-between">
+                  <h3>Region</h3>
+                  <h3>{weather?.location?.tz_id}</h3>
                 </div>
               </div>
             </div>
