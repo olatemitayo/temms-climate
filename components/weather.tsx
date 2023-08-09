@@ -206,7 +206,7 @@ export default function Weather() {
             </div>
           </div>
 
-          <div className="flex-1 cmd:w-[100%] min-h-[550px] rounded-2xl bg-[#172658]  px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,20px)] text-[#fff]">
+          <div className="flex-1 cmd:w-[100%] mcmd:min-h-[550px] rounded-2xl bg-[#172658]  px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,20px)] text-[#fff]">
             <div className="">
               <div className="flex items-center justify-between">
                 <div>
