@@ -16,13 +16,13 @@ const navItems = [
     id: "2",
     img: "",
     title: "Map",
-    link: "/map",
+    link: "#",
   },
   {
     id: "3",
     img: "",
     title: "Saved Location",
-    link: "/location",
+    link: "#",
   },
 ];
 
@@ -45,9 +45,9 @@ export default function Navbar() {
   return (
     <>
       <div className="bg-[#f0eeee] ">
-        <div className="mx-auto  flex justify-between items-center px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] max-w-[1500px]">
+        <div className="mx-auto  flex justify-between items-center px-[clamp(20px,3vw,40px)] py-[clamp(10px,2vw,16px)] max-w-[1500px]">
           <figure>
-            <Logo />
+            <Logo className="" />
           </figure>
           <ul className="flex gap-[clamp(8px,3vw,60px)] text-[clamp(12px,2vw,18px)] lg:text-[16px] whitespace-nowrap decoration-none text-[#1c1c1c]  cmd:hidden">
             {navItems.map((item) => (

@@ -16,7 +16,7 @@ interface UserProps {
   password: string;
 }
 
-export default function SignIn() {
+export default function SignIn({ className }) {
   const [visible, setVisible] = useState(false);
   const [userDetails, setUserDetails] = useState<UserProps>({
     username: "",
@@ -66,14 +66,14 @@ export default function SignIn() {
     },
   });
   return (
-    <main className="bg-[#f0f0f0] relative">
+    <main className="relative authBg">
       <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
-        <Logo />
+        <Logo className="text-[#fff]" />
       </div>
-      <div className="h-[100vh]   mx-auto flex justify-between">
-        <div className="md:w-full w-[50%] flex justify-between h-[100vh] flex-col py-[clamp(0.5rem,3vw,3rem)] px-[clamp(1rem,5vw,5rem)] ">
-          <div className="flex flex-col lg:h-[75%] my-auto   w-[100%]  h-[70vh]">
+      <div className="mcmd:w-[50%] mx-auto ">
+        <div className="md:w-full 2xl:w-full mx-auto   flex justify-between h-[100vh] flex-col py-[clamp(0.5rem,3vw,3rem)] px-[clamp(1rem,5vw,5rem)] ">
+          <div className="flex flex-col lg:h-[75%] my-auto  w-[100%]  h-[50vh] authBg conBg backdrop-blur-[50px] p-4 ">
             <div>
               <AuthHeading
                 heading="Sign In"
@@ -96,7 +96,7 @@ export default function SignIn() {
                   size="lg"
                   withAsterisk
                   classNames={{
-                    label: "   text-[#4e4d4c] text-[clamp(0.8rem,2vw,1.15rem)]",
+                    label: "   text-[#fff] text-[clamp(0.8rem,2vw,1.15rem)]",
                     input:
                       "focus:border-[#eadfd8] text-[#4e4d4c] text-[clamp(0.8rem,2vw,1.15rem)]  ",
                   }}
@@ -112,14 +112,14 @@ export default function SignIn() {
                   required
                   classNames={{
                     label:
-                      "   text-[#4e4d4c] font-normal text-[clamp(0.8rem,2vw,1.15rem)]",
+                      "   text-[#fff] font-normal text-[clamp(0.8rem,2vw,1.15rem)]",
                     input:
                       "focus:border-[#eadfd8] text-[#4e4d4c] !text-[clamp(0.8rem,2vw,1.15rem)]  ",
                   }}
                 />
                 <div className="flex flex-row-reverse justify-between">
                   <Link href="/signup" className="text-end">
-                    <p className="text-[#1c1c1c]  text-[12px]">
+                    <p className="text-[#fff]  text-[12px]">
                       Dont have an account?{" "}
                       <span className="text-[#025162] font-bold">Sign Up</span>
                     </p>
@@ -134,16 +134,6 @@ export default function SignIn() {
               </form>
             </div>
           </div>
-        </div>
-        <div className="w-[45%] md:hidden h-[100vh]">
-          <Image
-            src={"/sky.png"}
-            width={1000}
-            height={1000}
-            className="!w-full !h-[100vh]"
-            alt={"weather"}
-          />
-          {/* <Slider /> */}
         </div>
       </div>
       <LoadingOverlay visible={visible} overlayBlur={2} />

@@ -152,7 +152,7 @@ export default function Weather() {
               <div className="grid gap-4 mt-4">
                 <div className="flex items-center gap-8">
                   <h3>Chances of Rain</h3>
-                  <span className="text-red-600">
+                  <span className="text-red-600 text-[12px]">
                     *real life data not currently available
                   </span>
                 </div>
@@ -263,7 +263,7 @@ export default function Weather() {
           </div>
         </div>
       ) : (
-        <div className="flex items-center justify-center h-[80vh] m-auto flex-wrap">
+        <div className="px-[clamp(20px,3vw,40px)] flex items-center justify-center h-[80vh] m-auto flex-wrap">
           <p className="text-[clamp(1.5rem,3vw,3rem)] ">
             Hello{" "}
             <span className="text-[#172658] font-bold">
