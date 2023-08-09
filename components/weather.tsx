@@ -269,7 +269,7 @@ export default function Weather() {
             <span className="text-[#172658] font-bold">
               {title?.data?.username},
             </span>{" "}
-            search for any location
+            search for your city{" "}
           </p>
         </div>
       )}
