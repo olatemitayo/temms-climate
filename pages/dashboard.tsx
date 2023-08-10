@@ -7,26 +7,26 @@ import axios from "axios";
 import { Button } from "@mantine/core";
 
 function weather() {
-  const [city, setCity] = useState("");
-  const [weather, setWeather] = useState({});
-  const [loading, setLoading] = useState(false);
+  // const [city, setCity] = useState("");
+  // const [weather, setWeather] = useState({});
+  // const [loading, setLoading] = useState(false);
 
-  const url = `http://api.weatherapi.com/v1/current.json?key=74bcc7f8f64d449db7b103222230808&q=${city}&aqi=no`;
+  // const url = `http://api.weatherapi.com/v1/current.json?key=74bcc7f8f64d449db7b103222230808&q=${city}&aqi=no`;
 
-  const Climate = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
+  // const Climate = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setLoading(true);
 
-    try {
-      const res = await axios.get(url);
-      setWeather(res.data);
-      setCity("");
-    } catch (error) {
-      console.error("Error fetching weather data:", error);
-    }
+  //   try {
+  //     const res = await axios.get(url);
+  //     setWeather(res.data);
+  //     setCity("");
+  //   } catch (error) {
+  //     console.error("Error fetching weather data:", error);
+  //   }
 
-    setLoading(false);
-  };
+  //   setLoading(false);
+  // };
 
   return (
     <>

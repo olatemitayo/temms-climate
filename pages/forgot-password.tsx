@@ -55,7 +55,7 @@ export default function ForgotPassword() {
     <main className="bg-[#f0f0f0] relative">
       <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
-        <Logo />
+        <Logo className=''/>
       </div>
 
       <div className="h-[100vh]   mx-auto flex justify-between">

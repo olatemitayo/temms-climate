@@ -78,7 +78,7 @@ export default function CreateAccount() {
     <main className="bg-[#f0f0f0] relative">
       <ToastContainer toastClassName="customToast" />
       <div className="absolute left-[10px] top-[10px]">
-        <Logo />
+        <Logo className=''/>
       </div>
       <div className="h-[100vh]   mx-auto flex justify-between">
         <div className="md:w-full w-[50%] flex justify-between h-[100vh] flex-col py-[clamp(0.5rem,3vw,3rem)] px-[clamp(1rem,5vw,5rem)] ">
