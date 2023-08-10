@@ -45,7 +45,7 @@ export default function Weather() {
     return () => {};
   }, []);
 
-  const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_KEY}&q=${city}&aqi=no`;
+  const url = `https://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_KEY}&q=${city}&aqi=no`;
 
   const Climate = async (e) => {
     e.preventDefault();
