@@ -50,12 +50,7 @@ export default function Navbar() {
             ))}
           </ul>
           <div className="flex items-center gap-2 cmd:hidden">
-            <Button
-              className=" bg-[#2c3f7d] hover:bg-[#333d5f] "
-              onClick={handleLogOut}
-            >
-              Log Out
-            </Button>
+            <div></div>
           </div>
           <div className="items-center hidden gap-4 cmd:flex">
             <Popover width={100} position="left" shadow="md">
