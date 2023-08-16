@@ -10,10 +10,8 @@ module.exports = {
       "2xl": { max: "1440px" },
       xl: { max: "1279px" },
       lg: { max: "1023px" },
-      cmd: { max: "800px" },
-      mcmd: { min: "800px" },
       md: { max: "700px" },
-
+      cmd: { max: "630px" },
       csm: { max: "425px" },
       sm: { max: "320px" },
     },

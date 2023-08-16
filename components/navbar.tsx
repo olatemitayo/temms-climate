@@ -31,17 +31,9 @@ const handleLogOut = () => {
   window.location.href = "/";
 };
 export default function Navbar() {
-  const [title, setTitle] = useState<UserDetails>(null);
   const [opened, { toggle }] = useDisclosure(false);
   const label = opened ? "Close navigation" : "Open navigation";
 
-  useEffect(() => {
-    if (localStorage.getItem("my-user")) {
-      setTitle(JSON.parse(localStorage.getItem("my-user") as string));
-    }
-
-    return () => {};
-  }, []);
   return (
     <>
       <div className="bg-[#f0eeee] ">

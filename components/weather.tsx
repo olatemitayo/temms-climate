@@ -1,6 +1,6 @@
 import { UserDetails } from "@/pages/_app";
 import React, { useEffect, useState } from "react";
-import { Progress, clsx } from "@mantine/core";
+import { Progress } from "@mantine/core";
 import axios from "axios";
 import { TextInput } from "@mantine/core";
 import CustomButton from "./auth/button";
@@ -45,7 +45,7 @@ export default function Weather() {
     return () => {};
   }, []);
 
-  const url = `https://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_KEY}&q=${city}&aqi=no`;
+  const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_KEY}&q=${city}&aqi=no`;
 
   const Climate = async (e) => {
     e.preventDefault();
@@ -78,7 +78,7 @@ export default function Weather() {
           <div className="w-[70%] cmd:w-[100%] max-h-[100%] min-h-[550px]   px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] border border-[#f0eeee] rounded-2xl">
             <div className="">
               <div className="">
-                <h1 className="mb-4  text-[#2c3f7d]">Today&aposs overview</h1>
+                <h1 className="mb-4  text-[#2c3f7d]">Today's overview</h1>
                 <div className="flex flex-wrap items-center justify-between gap-3 ">
                   <div className="bg-[#f0eeee] min-w-[165px] p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
                     <img src="/wind.svg" alt={"wind"} className="w-[24px]" />
@@ -262,11 +262,7 @@ export default function Weather() {
       ) : (
         <div className="px-[clamp(20px,3vw,40px)] flex items-center justify-center h-[80vh] m-auto flex-wrap">
           <p className="text-[clamp(1.5rem,3vw,3rem)] ">
-            Hello{" "}
-            <span className="text-[#172658] font-bold">
-              {title?.data?.username},
-            </span>{" "}
-            search for your city{" "}
+            Search for your city....{" "}
           </p>
         </div>
       )}
