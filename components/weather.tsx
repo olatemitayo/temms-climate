@@ -78,7 +78,7 @@ export default function Weather() {
           <div className="w-[70%] cmd:w-[100%] max-h-[100%] min-h-[550px]   px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] border border-[#f0eeee] rounded-2xl">
             <div className="">
               <div className="">
-                <h1 className="mb-4  text-[#2c3f7d]">Today's overview</h1>
+                <h1 className="mb-4  text-[#2c3f7d]">Today&lsquos overview</h1>
                 <div className="flex flex-wrap items-center justify-between gap-3 ">
                   <div className="bg-[#f0eeee] min-w-[165px] p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
                     <img src="/wind.svg" alt={"wind"} className="w-[24px]" />
