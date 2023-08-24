@@ -75,59 +75,59 @@ export default function Weather() {
       </div>
       {weather ? (
         <div className="mx-auto  flex cmd:flex-col-reverse justify-between items-center px-[clamp(20px,3vw,40px)] py-[clamp(10px,2vw,16px)] max-w-[1500px] gap-4 ">
-          <div className="w-[70%] cmd:w-[100%] max-h-[100%] min-h-[550px]   px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] border border-[#f0eeee] rounded-2xl">
+          <div className="w-[70%] cmd:w-[100%] max-h-[100%]   px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,16px)] border border-[#f0eeee] rounded-2xl">
             <div className="">
-              <div className="">
+              <div className="overflow-auto">
                 <h1 className="mb-4  text-[#2c3f7d]">Today&lsquos overview</h1>
-                <div className="flex flex-wrap items-center justify-between gap-3 ">
-                  <div className="bg-[#f0eeee] min-w-[165px] p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
+                <div className="flex items-center justify-between gap-3 overflow-auto flex-nowrap">
+                  <div className="  p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
                     <img src="/wind.svg" alt={"wind"} className="w-[24px]" />
                     <div className="">
-                      <p className="text-[clamp(12px,1vw,16px)]  text-[#2c3f7d]">
+                      <p className="text-[clamp(12px,1vw,16px)]  text-[#2c3f7d]  w-max">
                         Wind Speed
                       </p>
-                      <h1 className="text-[clamp(24px,1vw,28px)] font-medium">
+                      <h1 className="text-[clamp(24px,1vw,28px)] font-medium w-max">
                         {weather?.current?.wind_kph}km/h
                       </h1>
                     </div>
                   </div>
-                  <div className="bg-[#f0eeee] min-w-[165px] p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
+                  <div className=" p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
                     <img
                       src="/humidity-low.svg"
                       alt={"feel"}
                       className="w-[24px]"
                     />
                     <div className="">
-                      <p className="text-[clamp(12px,1vw,16px)] text-[#2c3f7d]">
+                      <p className="text-[clamp(12px,1vw,16px)] text-[#2c3f7d]  w-max">
                         Humidity
                       </p>
-                      <h1 className="text-[clamp(24px,2vw,28px)] ">
+                      <h1 className="text-[clamp(24px,2vw,28px)]  w-max">
                         {weather?.current?.humidity}%
                       </h1>
                     </div>
                   </div>
-                  <div className="bg-[#f0eeee] min-w-[165px] p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
+                  <div className=" p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around">
                     <img
                       src="/wave-line.svg"
                       alt={"ddd"}
                       className="w-[24px]"
                     />
                     <div className="">
-                      <p className="text-[clamp(12px,1vw,16px)] text-[#2c3f7d]">
+                      <p className="text-[clamp(12px,1vw,16px)] text-[#2c3f7d]  w-max">
                         Pressure
                       </p>
-                      <h1 className="text-[clamp(24px,2vw,28px)] ">
+                      <h1 className="text-[clamp(24px,2vw,28px)]  w-max ">
                         {weather?.current?.pressure_mb} hpa
                       </h1>
                     </div>
                   </div>
-                  <div className="bg-[#f0eeee] min-w-[165px] p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around ">
+                  <div className=" p-[clamp(5px,2vw,20px)] rounded-lg flex gap-4 items-center justify-center csm:w-[100%] csm:justify-around ">
                     <img src="/sun.svg" alt={"uv"} className="w-[24px]" />
                     <div className="">
-                      <p className="text-[clamp(12px,1vw,16px)] text-[#2c3f7d]">
+                      <p className="text-[clamp(12px,1vw,16px)] text-[#2c3f7d]  w-max">
                         Uv Index
                       </p>
-                      <h1 className="text-[clamp(24px,2vw,28px)] ">
+                      <h1 className="text-[clamp(24px,2vw,28px)]  w-max">
                         {weather?.current?.uv}
                       </h1>
                     </div>
@@ -187,23 +187,12 @@ export default function Weather() {
                       className="w-[80%]"
                     />
                   </div>
-                  <div className="flex items-center justify-between">
-                    <p>10 am</p>
-                    <Progress
-                      value={50}
-                      label="50%"
-                      size={28}
-                      radius="xl"
-                      color="#999eb4"
-                      className="w-[80%]"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="flex-1 cmd:w-[100%] mcmd:min-h-[550px] rounded-2xl bg-[#172658]  px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,20px)] text-[#fff]">
+          <div className="flex-1 cmd:w-[100%] rounded-2xl bg-[#172658]  px-[clamp(20px,3vw,35px)] py-[clamp(10px,2vw,20px)] text-[#fff]">
             <div className="">
               <div className="flex items-center justify-between">
                 <div>
@@ -224,9 +213,13 @@ export default function Weather() {
                 className="w-[40px]"
               />
               <div className="flex items-center justify-between">
-                <h1 className="text-[40px]">{weather?.current?.temp_c}°C</h1>
+                <h1 className="text-[40px] w-1/3">
+                  {weather?.current?.temp_c}°C
+                </h1>
 
-                <p>{weather?.current?.condition?.text}</p>
+                <p className="w-2/3  text-end">
+                  {weather?.current?.condition?.text}
+                </p>
               </div>
             </div>
             <div>
