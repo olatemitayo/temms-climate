@@ -45,7 +45,7 @@ export default function Weather() {
     return () => {};
   }, []);
 
-  const url = `http://api.weatherapi.com/v1/current.json?key=${process.env.NEXT_PUBLIC_KEY}&q=${city}&aqi=no`;
+  const url = `http://api.weatherapi.com/v1/current.json?key=74bcc7f8f64d449db7b103222230808&q=${city}&aqi=no`;
 
   const Climate = async (e) => {
     e.preventDefault();
@@ -217,7 +217,7 @@ export default function Weather() {
                   {weather?.current?.temp_c}°C
                 </h1>
 
-                <p className="w-2/3  text-end">
+                <p className="w-2/3 text-end">
                   {weather?.current?.condition?.text}
                 </p>
               </div>
